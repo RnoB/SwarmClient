@@ -32,7 +32,7 @@ public class Client {
     private double Y;
     private double Z;
 
-    private final ByteBuffer codeReadBuffer = ByteBuffer.allocate(Byte.BYTES + Double.BYTES * 3);
+    private final ByteBuffer codeReadBuffer = ByteBuffer.allocate(Byte.BYTES);
     private final ByteBuffer gameInfoBuffer = ByteBuffer.allocate(Integer.BYTES * 2);
     private final ByteBuffer playerIdBuffer = ByteBuffer.allocate(Integer.BYTES);
     private ByteBuffer listIdBuffer;
