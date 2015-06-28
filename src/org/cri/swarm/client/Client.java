@@ -35,6 +35,7 @@ public class Client {
     private final ByteBuffer codeReadBuffer = ByteBuffer.allocate(Byte.BYTES);
     private final ByteBuffer gameInfoBuffer = ByteBuffer.allocate(Integer.BYTES * 2);
     private final ByteBuffer playerIdBuffer = ByteBuffer.allocate(Integer.BYTES);
+    private final ByteBuffer newPlayerIdBuffer = ByteBuffer.allocate(Integer.BYTES+Double.BYTES * 3);
     private ByteBuffer listIdBuffer;
     private ByteBuffer listPositionBuffer;
     Random r = new Random();
@@ -134,10 +135,13 @@ public class Client {
                     System.exit(0);
                     
                 case (byte) 33:
-                    sc.read(playerIdBuffer);
-                    if (!playerIdBuffer.hasRemaining()) {
+                    sc.read(newPlayerIdBuffer);
+                    if (!newPlayerIdBuffer.hasRemaining()) {
                         playerIdBuffer.flip();
-                        listId.add(playerIdBuffer.getInt());
+                        listId.add(newPlayerIdBuffer.getInt());
+                        xPlayer.add(newPlayerIdBuffer.getDouble());
+                        yPlayer.add(newPlayerIdBuffer.getDouble());
+                        zPlayer.add(newPlayerIdBuffer.getDouble());
                         nPlayers++;
                     }
                     playerIdBuffer.clear();
